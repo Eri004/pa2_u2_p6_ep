@@ -62,4 +62,9 @@ public class Estudiante {
         this.genero = genero;
     }
 
+    @Override
+    public String toString() {
+        return "Estudiante [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", fechaNacimiento=" + fechaNacimiento + ", genero=" + genero + "]";
+    }
+    
 }

@@ -2,8 +2,9 @@ package ec.edu.uce;
 
 import java.time.LocalDate;
 
+import ec.edu.uce.application.service.EstudianteService;
 import ec.edu.uce.domain.model.Estudiante;
-import ec.edu.uce.domain.repository.EstudianteRepository;
+import ec.edu.uce.domain.repository.EstudianteRepositoryV1;
 import io.quarkus.runtime.Quarkus;
 import io.quarkus.runtime.QuarkusApplication;
 import io.quarkus.runtime.annotations.QuarkusMain;
@@ -20,22 +21,37 @@ public class Main {
     public static class App implements QuarkusApplication {
         
         @Inject
-        EstudianteRepository estudianteRepository;
+        EstudianteService estudianteService;
 
         @Override
         @Transactional
         public int run(String... args) throws Exception {
             
-            Estudiante estudiante = new Estudiante();
-            estudiante.setNombre("Juan");
-            estudiante.setApellido("Perez");
-            estudiante.setFechaNacimiento(LocalDate.of(2001, 5, 10));
-            estudiante.setGenero("M");
-            estudianteRepository.crear(estudiante);
+            Estudiante estudiante1 = new Estudiante();
+            estudiante1.setNombre("Shallan");
+            estudiante1.setApellido("Davar");
+            estudiante1.setFechaNacimiento(LocalDate.of(2004, 12, 31));
+            estudiante1.setGenero("Masculino");
+            this.estudianteService.guardar(estudiante1);
+           
+            Estudiante estudianteNuevo = new Estudiante();
+            estudianteNuevo.setNombre("Kaladin");
+                estudianteNuevo.setApellido("Soria");
+                estudianteNuevo.setFechaNacimiento(LocalDate.of(2003, 12, 31));
+                estudianteNuevo.setGenero("Femenino");
+                this.estudianteService.guardar(estudianteNuevo);
 
-            estudianteRepository.listarTodos().forEach(est -> {
-                System.out.println("Estudiante: " + est.getNombre() + " " + est.getApellido());
-            });
+            Estudiante estudianteEncontrado = this.estudianteService.buscarPorId(estudiante1.getId());
+            System.out.println("Estudiante encontrado: " + estudianteEncontrado);
+            
+            Estudiante estudianteEncontrado2 = this.estudianteService.buscarPorId(estudianteNuevo.getId());
+            System.out.println("Estudiante encontrado: " + estudianteEncontrado2);
+            
+
+
+
+                    
+
             return 0;
         }
     }
