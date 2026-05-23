@@ -1,10 +1,8 @@
 package ec.edu.uce;
 
-import java.time.LocalDate;
 
 import ec.edu.uce.application.service.EstudianteService;
-import ec.edu.uce.domain.model.Estudiante;
-import ec.edu.uce.domain.repository.EstudianteRepositoryV1;
+
 import io.quarkus.runtime.Quarkus;
 import io.quarkus.runtime.QuarkusApplication;
 import io.quarkus.runtime.annotations.QuarkusMain;
@@ -27,26 +25,8 @@ public class Main {
         @Transactional
         public int run(String... args) throws Exception {
             
-            Estudiante estudiante1 = new Estudiante();
-            estudiante1.setNombre("Shallan");
-            estudiante1.setApellido("Davar");
-            estudiante1.setFechaNacimiento(LocalDate.of(2004, 12, 31));
-            estudiante1.setGenero("Masculino");
-            this.estudianteService.guardar(estudiante1);
-           
-            Estudiante estudianteNuevo = new Estudiante();
-            estudianteNuevo.setNombre("Kaladin");
-                estudianteNuevo.setApellido("Soria");
-                estudianteNuevo.setFechaNacimiento(LocalDate.of(2003, 12, 31));
-                estudianteNuevo.setGenero("Femenino");
-                this.estudianteService.guardar(estudianteNuevo);
+          System.out.println(this.estudianteService.listarPorCedula("0400125643").toString());
 
-            Estudiante estudianteEncontrado = this.estudianteService.buscarPorId(estudiante1.getId());
-            System.out.println("Estudiante encontrado: " + estudianteEncontrado);
-            
-            Estudiante estudianteEncontrado2 = this.estudianteService.buscarPorId(estudianteNuevo.getId());
-            System.out.println("Estudiante encontrado: " + estudianteEncontrado2);
-            
 
 
 

@@ -1,47 +1,24 @@
 package ec.edu.uce.domain.repository;
 
 import java.util.List;
-import java.util.Optional;
 
 import ec.edu.uce.domain.model.Estudiante;
-import io.quarkus.hibernate.orm.panache.PanacheRepositoryBase;
-import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.transaction.Transactional;
 
-@ApplicationScoped
-public class EstudianteRepository implements PanacheRepositoryBase<Estudiante, Integer> {
+public interface EstudianteRepository {
+    public void crear(Estudiante estudiante);
 
-    @Transactional
-    public Estudiante crear(Estudiante estudiante) {
-        persist(estudiante);
-        return estudiante;
-    }
+    public Estudiante seleccionar_id(Integer id);
 
-    public Optional<Estudiante> buscarPorId(Integer id) {
-        return findByIdOptional(id);
-    }
+        public void actualizar(Estudiante estudiante);
+    
+        public void eliminar(Integer id);
 
-    public List<Estudiante> listarTodos() {
-        return listAll();
-    }
+        public List<Estudiante> seleccionar_todos();
 
-    @Transactional
-    public Optional<Estudiante> actualizar(Integer id, Estudiante datosActualizados) {
-        Estudiante estudiante = findById(id);
-        if (estudiante == null) {
-            return Optional.empty();
-        }
+        public List<Estudiante> seleccionar_por_nombre(String nombre);
 
-        estudiante.setNombre(datosActualizados.getNombre());
-        estudiante.setApellido(datosActualizados.getApellido());
-        estudiante.setFechaNacimiento(datosActualizados.getFechaNacimiento());
-        estudiante.setGenero(datosActualizados.getGenero());
+        public Estudiante seleccionar_por_cedula(String cedula);
 
-        return Optional.of(estudiante);
-    }
-
-    @Transactional
-    public boolean eliminar(Integer id) {
-        return deleteById(id);
-    }
+        
+    
 }

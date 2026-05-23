@@ -1,7 +1,9 @@
 package ec.edu.uce.application.service;
 
+import java.util.List;
+
 import ec.edu.uce.domain.model.Estudiante;
-import ec.edu.uce.domain.repository.EstudianteRepositoryV1;
+import ec.edu.uce.domain.repository.EstudianteRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 
@@ -10,7 +12,7 @@ import jakarta.inject.Inject;
 public class EstudianteService {
 
     @Inject
-    private EstudianteRepositoryV1 estudianteRepository;
+    private EstudianteRepository estudianteRepository;
 
     public void guardar (Estudiante estudiante){
         this.estudianteRepository.crear(estudiante);
@@ -38,6 +40,18 @@ public class EstudianteService {
 
     public void eliminar(Integer id){
         this.estudianteRepository.eliminar(id);
+    }
+
+    public List<Estudiante> listarTodos() {
+        return this.estudianteRepository.seleccionar_todos();
+    }
+
+    public List<Estudiante> listarPorNombre(String nombre) {
+        return this.estudianteRepository.seleccionar_por_nombre(nombre);
+    }
+
+    public Estudiante listarPorCedula(String cedula) {
+        return this.estudianteRepository.seleccionar_por_cedula(cedula);    
     }
 
 }   

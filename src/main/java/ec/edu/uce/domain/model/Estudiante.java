@@ -19,6 +19,10 @@ public class Estudiante {
     @Id
     @Column(name = "estu_id")
     private Integer id;
+
+    @Column (name= "estu_cedula", unique = true)
+    private String cedula;
+
     @Column(name = "estu_nombre")
     private String nombre;
     @Column(name = "estu_apellido")
@@ -62,9 +66,17 @@ public class Estudiante {
         this.genero = genero;
     }
 
+    public String getCedula() {
+        return cedula;
+    }
+
+    public void setCedula(String cedula) {
+        this.cedula = cedula;
+    }
+
     @Override
     public String toString() {
-        return "Estudiante [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", fechaNacimiento=" + fechaNacimiento + ", genero=" + genero + "]";
+        return "Estudiante [id=" + id + ", cedula=" + cedula + ", nombre=" + nombre + ", apellido=" + apellido + ", fechaNacimiento=" + fechaNacimiento + ", genero=" + genero + "]";
     }
     
 }
