@@ -1,5 +1,6 @@
 package ec.edu.uce.domain.repository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import ec.edu.uce.domain.model.Estudiante;
@@ -19,6 +20,14 @@ public interface EstudianteRepository {
 
         public Estudiante seleccionar_por_cedula(String cedula);
 
-        
-    
+        public List<Estudiante> seleccionar_por_genero(String genero);
+
+        public List<Estudiante> seleccionar_por_genero2(String genero);
+
+        public List<Estudiante> seleccionar_por_rango_fecha(LocalDate fechaInicio, LocalDate fechaFin);
+
+        public List<Estudiante> seleccionar_por_apellido(String apellido);
+
+        public Long seleccionar_contar ();
+
 }

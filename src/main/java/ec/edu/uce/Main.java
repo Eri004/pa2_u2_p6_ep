@@ -2,7 +2,7 @@ package ec.edu.uce;
 
 
 import ec.edu.uce.application.service.EstudianteService;
-
+import java.time.LocalDate;
 import io.quarkus.runtime.Quarkus;
 import io.quarkus.runtime.QuarkusApplication;
 import io.quarkus.runtime.annotations.QuarkusMain;
@@ -24,14 +24,16 @@ public class Main {
         @Override
         @Transactional
         public int run(String... args) throws Exception {
-            
-          System.out.println(this.estudianteService.listarPorCedula("0400125643").toString());
 
+            this.estudianteService.listarPorApellido("Davar").forEach(System.out::println);
+            System.out.println("/////////////Separador de metodos u.u////////////");
 
-
-
+            LocalDate fechaInicio = LocalDate.of(2003, 1, 1);
+            LocalDate fechaFin = LocalDate.of(2003, 12, 31);
+            this.estudianteService.listarPorRangoFecha(fechaInicio, fechaFin).forEach(System.out::println);
+            System.out.println("/////////////Separador de metodos u.u////////////");
                     
-
+            System.out.println(this.estudianteService.seleccionarContar());  
             return 0;
         }
     }

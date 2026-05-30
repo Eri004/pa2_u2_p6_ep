@@ -7,11 +7,20 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
 @Entity
 @Table (name = "estudiante")
+
+@NamedQueries({
+   @NamedQuery(name = "Estudiante.buscar_por_genero", query = "SELECT e FROM Estudiante e WHERE e.genero = :genero"),
+   @NamedQuery(name = "Estudiante.buscar_por_rango_fecha", query= "SELECT e FROM Estudiante e WHERE e.fechaNacimiento BETWEEN :fechaInicio AND :fechaFin"  ),
+   @NamedQuery(name = "Estudiante.buscar_por_apellido", query = "SELECT e FROM Estudiante e WHERE e.apellido = :apellido"),
+   @NamedQuery(name = "Estudiante.contar", query = "SELECT COUNT(e) FROM Estudiante e")
+})
 public class Estudiante {
      
     @SequenceGenerator(name = "seq_estudiante_generator", sequenceName = "seq_estudiante", allocationSize = 1)
