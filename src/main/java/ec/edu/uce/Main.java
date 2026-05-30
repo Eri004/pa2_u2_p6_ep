@@ -25,15 +25,7 @@ public class Main {
         @Transactional
         public int run(String... args) throws Exception {
 
-            this.estudianteService.listarPorApellido("Davar").forEach(System.out::println);
-            System.out.println("/////////////Separador de metodos u.u////////////");
-
-            LocalDate fechaInicio = LocalDate.of(2003, 1, 1);
-            LocalDate fechaFin = LocalDate.of(2003, 12, 31);
-            this.estudianteService.listarPorRangoFecha(fechaInicio, fechaFin).forEach(System.out::println);
-            System.out.println("/////////////Separador de metodos u.u////////////");
-                    
-            System.out.println(this.estudianteService.seleccionarContar());  
+            this.estudianteService.listarTodosNative().forEach(System.out::println);
             return 0;
         }
     }

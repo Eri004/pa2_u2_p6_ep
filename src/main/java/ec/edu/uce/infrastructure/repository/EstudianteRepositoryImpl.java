@@ -115,6 +115,13 @@ public class EstudianteRepositoryImpl implements EstudianteRepository {
         TypedQuery<Long> query = this.em.createNamedQuery("Estudiante.contar", Long.class);
         return query.getSingleResult();
     }
+
+    @Override
+    public List<Estudiante> seleccionar_todos_native() {
+        Query query = this.em.createNativeQuery("SELECT * FROM estudiante", Estudiante.class);
+        return query.getResultList();
+
+    }
     
 
 }

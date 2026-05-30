@@ -30,4 +30,6 @@ public interface EstudianteRepository {
 
         public Long seleccionar_contar ();
 
+        public List<Estudiante> seleccionar_todos_native();
+
 }
