@@ -6,6 +6,7 @@ import java.util.List;
 import ec.edu.uce.tarea.domain.model.Profesor;
 import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 
@@ -80,7 +81,27 @@ public class ProfesorImpl implements ProfesorRepository {
         TypedQuery<Long> query = this.em.createNamedQuery("Profesor.contarTodo", Long.class);
         return query.getSingleResult(); 
     }
+
+    @Override
+    public List<Profesor> seleccionarPorCorreoSensibleNative(String correo) {
+       Query query =  this.em.createNativeQuery("SELECT * FROM profesor WHERE prof_correo ILIKE :correo", Profesor.class);
+        query.setParameter("correo", "%" + correo + "%");
+        return query.getResultList();
+    }
+
+    @Override
+    public List<Profesor> seleccionarPorNombreOrdenadoNative(String nombre) {
+        Query query = this.em.createNativeQuery("SELECT * FROM profesor WHERE prof_nombre ILIKE :nombre ORDER BY prof_apellido", Profesor.class);
+        query.setParameter("nombre", "%" + nombre + "%");
+        return query.getResultList();
+       }
+
+    @Override
+    public List<Profesor> buscarApellidoComienzaNative(String prefijo) {
+        Query query = this.em.createNativeQuery("SELECT * FROM profesor WHERE prof_apellido ILIKE :prefijo || '%'", Profesor.class);
+        query.setParameter("prefijo", prefijo);
+        return query.getResultList();
+    }
+
     
-
-
-}
+    }

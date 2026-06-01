@@ -61,6 +61,17 @@ public class ProfesorService {
     public Long contarProfesores(){
         return this.profesorRepository.contarTodo();
     }
-    
+
+    public List<Profesor> listarPorCorreoSensible(String correo){
+        return this.profesorRepository.seleccionarPorCorreoSensibleNative(correo);
+    }
+
+    public List<Profesor> listarPorNombreOrdenado(String nombre){
+        return this.profesorRepository.seleccionarPorNombreOrdenadoNative(nombre);
+    }
+
+    public List<Profesor> buscarApellidoComienza(String prefijo){
+        return this.profesorRepository.buscarApellidoComienzaNative(prefijo);
+    }
 
 }   
