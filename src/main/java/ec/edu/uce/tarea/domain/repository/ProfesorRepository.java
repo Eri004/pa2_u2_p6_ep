@@ -21,5 +21,12 @@ public interface ProfesorRepository {
 
         public Profesor seleccionarPorCorreo(String correo);
 
+        public List<Profesor> seleccionarPorApellido(String apellido);
+
+        public List<Profesor> seleccionarPorNombre(String nombre);
+
+        public Long contarTodo();
+        
+
         
 }

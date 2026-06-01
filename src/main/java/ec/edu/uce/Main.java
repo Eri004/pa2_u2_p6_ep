@@ -25,22 +25,20 @@ public class Main {
         @Transactional
         public int run(String... args) throws Exception {
            
-        profesorService.listarTodos().forEach(System.out::println);
+           /*  Profesor p1 = new Profesor();
+            p1.setNombre("Erick");
+            p1.setApellido("Guaman");
+            p1.setMateria("Programacion");
+            p1.setDireccion("Av. 6 de Diciembre");
+            p1.setCorreo("erick.guaman@uce.edu.ec");
+            profesorService.guardar(p1); */
 
-        Profesor p1 = new Profesor();
-        p1.setNombre("Fernando");
-        p1.setApellido("Ibarra");
-        p1.setMateria("Matematicas");
-        p1.setCorreo("fernando.ibarra@uce.edu.ec");
-        p1.setDireccion("Av 10 de Agosto");
-        profesorService.guardar(p1);
+       profesorService.listarPorApellido("Ibarra").forEach(System.out::println);
 
-
-          profesorService.listarPorMateria("Matematicas").forEach(System.out::println);
-
-        Profesor profesorEncontrado = profesorService.buscarPorCorreo("fernando.ibarra@uce.edu.ec");
-        System.out.println("Se encontró el profesor: " + profesorEncontrado);
             
+      profesorService.listarPorNombre("Erick").forEach(System.out::println);
+
+      System.out.println("Total de profesores: " + profesorService.contarProfesores());
 
 
                     

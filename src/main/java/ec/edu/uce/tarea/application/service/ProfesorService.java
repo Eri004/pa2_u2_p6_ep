@@ -2,7 +2,6 @@ package ec.edu.uce.tarea.application.service;
 
 
 import java.util.List;
-
 import ec.edu.uce.tarea.domain.model.Profesor;
 import ec.edu.uce.tarea.domain.repository.ProfesorRepository;
 import jakarta.enterprise.context.ApplicationScoped;
@@ -52,5 +51,16 @@ public class ProfesorService {
     public Profesor buscarPorCorreo(String correo){
         return this.profesorRepository.seleccionarPorCorreo(correo);
     }
+
+    public List<Profesor> listarPorApellido(String apellido){
+        return this.profesorRepository.seleccionarPorApellido(apellido);
+    }   
+    public List<Profesor> listarPorNombre(String nombre){
+        return this.profesorRepository.seleccionarPorNombre(nombre);
+    }
+    public Long contarProfesores(){
+        return this.profesorRepository.contarTodo();
+    }
+    
 
 }   

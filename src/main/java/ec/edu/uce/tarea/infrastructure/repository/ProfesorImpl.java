@@ -60,6 +60,26 @@ public class ProfesorImpl implements ProfesorRepository {
         query.setParameter("correo", correo);
         return query.getResultList().getFirst();
     }
+
+    @Override
+    public List<Profesor> seleccionarPorApellido(String apellido) {
+        TypedQuery<Profesor> query = this.em.createNamedQuery("Profesor.seleccionarPorApellido", Profesor.class);
+        query.setParameter("apellido", apellido);
+        return query.getResultList();
+    }
+
+    @Override
+    public List<Profesor> seleccionarPorNombre(String nombre) {
+        TypedQuery<Profesor> query = this.em.createNamedQuery("Profesor.seleccionarPorNombre", Profesor.class);
+        query.setParameter("nombre", nombre);
+        return query.getResultList();
+    }
+
+    @Override
+    public Long contarTodo() {
+        TypedQuery<Long> query = this.em.createNamedQuery("Profesor.contarTodo", Long.class);
+        return query.getSingleResult(); 
+    }
     
 
 

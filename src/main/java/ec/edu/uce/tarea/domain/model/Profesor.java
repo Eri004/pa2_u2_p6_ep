@@ -1,17 +1,22 @@
 package ec.edu.uce.tarea.domain.model;
 
-import java.time.LocalDate;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.NamedQuery;
+import jakarta.persistence.NamedQueries;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
 @Entity
 @Table (name = "profesor")
+@NamedQueries({
+    @NamedQuery(name = "Profesor.contarTodo", query = "SELECT COUNT(p) FROM Profesor p"),
+    @NamedQuery(name = "Profesor.seleccionarPorApellido", query = "SELECT p FROM Profesor p WHERE p.apellido = :apellido"),
+    @NamedQuery(name = "Profesor.seleccionarPorNombre", query = "SELECT p FROM Profesor p WHERE p.nombre = :nombre")
+}   )   
 public class Profesor {
      
     @SequenceGenerator(name = "seq_profesor_generator", sequenceName = "seq_profesor", allocationSize = 1)
