@@ -25,7 +25,11 @@ public class Profesor {
     private String apellido;
     @Column(name = "prof_materia")
     private String materia;
-    
+    @Column(name = "prof_direccion")
+    private String direccion;
+    @Column(name="prof_correo")
+    private String correo;
+
     public Integer getId() {
         return id;
     }
@@ -50,11 +54,22 @@ public class Profesor {
     public void setMateria(String materia) {
         this.materia = materia;
     }
-
+    public String getCorreo() {
+        return correo;
+    }
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+    public String getDireccion() {
+        return direccion;
+    }
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
 
     @Override
-    public String toString() {
-        return "Profesor [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", materia=" + materia + "]";
+            public String toString() {
+                return "Profesor [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", materia=" + materia + ", direccion=" + direccion + ", correo=" + correo + "]";
     }
     
 }

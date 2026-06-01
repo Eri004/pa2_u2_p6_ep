@@ -25,33 +25,22 @@ public class Main {
         @Transactional
         public int run(String... args) throws Exception {
            
-            Profesor profesor1 = new Profesor();
-            profesor1.setNombre("Erick");
-            profesor1.setApellido("Paz");
-            profesor1.setMateria("Matematicas");
+        profesorService.listarTodos().forEach(System.out::println);
 
-            this.profesorService.guardar(profesor1);
-            System.out.println("Profesor guardado: " + profesor1);
-
-             Profesor profesor2 = new Profesor();
-
-             profesor2.setNombre("Maria");
-             profesor2.setApellido("Lopez");
-             profesor2.setMateria("Lengua");    
-                this.profesorService.guardar(profesor2);
-                System.out.println("Profesor guardado: " + profesor2);
+        Profesor p1 = new Profesor();
+        p1.setNombre("Fernando");
+        p1.setApellido("Ibarra");
+        p1.setMateria("Matematicas");
+        p1.setCorreo("fernando.ibarra@uce.edu.ec");
+        p1.setDireccion("Av 10 de Agosto");
+        profesorService.guardar(p1);
 
 
-                profesor1.setMateria("Fisica");
-                this.profesorService.actualizar(profesor1.getId(), profesor1);
-                System.out.println("Profesor actualizado: " + profesor1);
+          profesorService.listarPorMateria("Matematicas").forEach(System.out::println);
 
-                Profesor profesorEncontrado = this.profesorService.buscarPorId(profesor1.getId());
-                System.out.println("Profesor encontrado: " + profesorEncontrado);
-
-                
-
-
+        Profesor profesorEncontrado = profesorService.buscarPorCorreo("fernando.ibarra@uce.edu.ec");
+        System.out.println("Se encontró el profesor: " + profesorEncontrado);
+            
 
 
                     

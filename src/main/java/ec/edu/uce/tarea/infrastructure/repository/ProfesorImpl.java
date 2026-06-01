@@ -1,12 +1,12 @@
 package ec.edu.uce.tarea.infrastructure.repository;
 
-import javax.swing.text.html.parser.Entity;
-
 import ec.edu.uce.tarea.domain.repository.ProfesorRepository;
 import jakarta.enterprise.context.ApplicationScoped;
+import java.util.List;
 import ec.edu.uce.tarea.domain.model.Profesor;
 import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 
 @ApplicationScoped
@@ -40,5 +40,27 @@ public class ProfesorImpl implements ProfesorRepository {
         
         this.em.remove(this.seleccionar_id(id));
     }
+
+    @Override
+    public List<Profesor> seleccionarTodo() {
+        TypedQuery <Profesor> query = this.em.createQuery("SELECT p FROM Profesor p", Profesor.class);
+        return query.getResultList();
+    }
+
+    @Override
+    public List<Profesor> seleccionarPorMateria(String materia) {
+        TypedQuery<Profesor> query = this.em.createQuery("SELECT p FROM Profesor p WHERE p.materia = :materia", Profesor.class);
+        query.setParameter("materia", materia);
+        return query.getResultList();   
+    }
+
+    @Override
+    public Profesor seleccionarPorCorreo(String correo) {
+        TypedQuery<Profesor> query = this.em.createQuery("SELECT p FROM Profesor p WHERE p.correo = :correo", Profesor.class);
+        query.setParameter("correo", correo);
+        return query.getResultList().getFirst();
+    }
+    
+
 
 }
