@@ -32,4 +32,10 @@ public interface EstudianteRepository {
 
         public List<Estudiante> seleccionar_todos_native();
 
+        public List<Estudiante> seleccionarTodosCriteria();
+
+         public List<Estudiante> seleccionarPorNombreCriteria(String nombre);
+
+         public List<Estudiante> seleccionarNombreApellidoCriteria(String nombre,String apellido);
+
 }

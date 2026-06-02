@@ -77,4 +77,18 @@ public class EstudianteService {
     public List<Estudiante> listarTodosNative() {
         return this.estudianteRepository.seleccionar_todos_native();
     }
+
+    public List<Estudiante> listarTodosCriteria() {
+        return this.estudianteRepository.seleccionarTodosCriteria();
+    }
+
+    public List<Estudiante> listarPorNombreCriteria(String nombre) {
+        return this.estudianteRepository.seleccionarPorNombreCriteria(nombre);
+    }
+
+    public List<Estudiante> listarPorNombreApellidoCriteria(String nombre, String apellido) {
+        return this.estudianteRepository.seleccionarNombreApellidoCriteria(nombre, apellido);
+    }
+
+    
 }   

@@ -2,15 +2,19 @@ package ec.edu.uce.infrastructure.repository;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.ArrayList;
+import jakarta.persistence.criteria.Predicate;
 
 import ec.edu.uce.domain.repository.EstudianteRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.NoResultException;
-import jakarta.persistence.NonUniqueResultException;
+
 import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Root;
 import jakarta.transaction.Transactional;
 import ec.edu.uce.domain.model.Estudiante;
 
@@ -123,5 +127,74 @@ public class EstudianteRepositoryImpl implements EstudianteRepository {
 
     }
     
+    @Override
+    public List<Estudiante> seleccionarTodosCriteria() {
 
+        //Crea una instancia de la clase que va a ser la encargada de construir la consulta
+        CriteriaBuilder cb = this.em.getCriteriaBuilder();
+
+        // Crea una consulta de tipo CriteriaQuery para la entidad Estudiante
+        //Define el tipo de objeto de retorno de la consulta
+        CriteriaQuery<Estudiante> myQuery = cb.createQuery(Estudiante.class);
+
+        //Se define las entidades del FROM
+        Root<Estudiante> root = myQuery.from(Estudiante.class);
+
+        //Defino que tipo de SQL voy a utilizar
+        //SELECT en este caso
+
+        myQuery.select(root);
+
+        //Hasta aqui terminamos de construir la consulta, ahora la ejecutamos
+        TypedQuery<Estudiante> query = this.em.createQuery(myQuery);
+        return query.getResultList();
+            
+
+    }
+
+    @Override
+    public List<Estudiante> seleccionarPorNombreCriteria(String nombre) {
+        CriteriaBuilder cb = this.em.getCriteriaBuilder();
+        CriteriaQuery<Estudiante> myQuery = cb.createQuery(Estudiante.class);
+        Root<Estudiante> root = myQuery.from(Estudiante.class);
+
+        //WHERE e.nombre = :nombre
+        Predicate predicate = cb.equal(root.get("nombre"), nombre);
+        myQuery.select(root).where(predicate);
+
+        TypedQuery<Estudiante> query = this.em.createQuery(myQuery);
+        return query.getResultList();
+
+        
+    
+    }
+
+    @Override
+    public List<Estudiante> seleccionarNombreApellidoCriteria(String nombre, String apellido) {
+        CriteriaBuilder cb = this.em.getCriteriaBuilder();
+        CriteriaQuery<Estudiante> myQuery = cb.createQuery(Estudiante.class);
+        Root<Estudiante> root = myQuery.from(Estudiante.class);
+        List <Predicate> predicates = new ArrayList<>();
+
+
+       //Queremos que se cumplan dos condiciones, el nombre y el apellido, 
+       //Pero si es null el apellido, se imprima solo por nombre, y si es null el nombre, se imprima solo por apellido
+       // y si los dos son null, se imprima todo
+
+       if(nombre != null){
+        Predicate predicateNombre = cb.equal(root.get("nombre"), nombre);
+       predicates.add(predicateNombre);
+       }
+       
+       if(apellido != null){
+        Predicate predicateApellido = cb.equal(root.get("apellido"), apellido);
+        predicates.add(predicateApellido);
+       }
+            myQuery.select(root).where(predicates);
+
+        TypedQuery<Estudiante> query = this.em.createQuery(myQuery);
+        return query.getResultList();
+    
+    }
+    
 }
