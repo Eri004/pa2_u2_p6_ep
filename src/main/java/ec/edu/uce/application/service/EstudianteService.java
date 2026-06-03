@@ -9,7 +9,6 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 
 @ApplicationScoped
-
 public class EstudianteService {
 
     @Inject
@@ -36,7 +35,7 @@ public class EstudianteService {
             estudianteCambiable.setGenero(estudiante.getGenero());
 
         
-        this.estudianteRepository.actualizar(estudiante);
+        this.estudianteRepository.actualizar(estudianteCambiable);
     }
 
     public void eliminar(Integer id){

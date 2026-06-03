@@ -29,7 +29,7 @@ public class Estudiante {
     @Column(name = "estu_id")
     private Integer id;
 
-    @Column (name= "estu_cedula", unique = true)
+    @Column (name= "estu_cedula")
     private String cedula;
 
     @Column(name = "estu_nombre")

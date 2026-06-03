@@ -7,6 +7,9 @@ import io.quarkus.runtime.QuarkusApplication;
 import io.quarkus.runtime.annotations.QuarkusMain;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
+
+import java.time.LocalDate;
+
 import ec.edu.uce.application.service.EstudianteService;
 import ec.edu.uce.domain.model.Estudiante;
 
@@ -25,13 +28,32 @@ public class Main {
          
 
         @Override
-        @Transactional
         public int run(String... args) throws Exception {
 
             
-             //this.eService.listarTodosCriteria().forEach(System.out::println);
 
-           // this.eService.listarPorNombreCriteria("Kaladin ").forEach(System.out::println);
+                eService.listarTodosNative().forEach(System.out::println);
+        //this.eService.listarTodosCriteria().forEach(System.out::println);
+
+       /*  Estudiante estudiante = new Estudiante();
+              estudiante.setNombre("Sebastian");
+                estudiante.setApellido("Valverde");
+                estudiante.setCedula("0401789077");
+                estudiante.setFechaNacimiento(LocalDate.of(2004, 10, 15));
+                estudiante.setGenero("Masculino");  */
+
+              //  eService.guardar(estudiante);
+
+
+          /*       Estudiante estudiante2 = new Estudiante();
+              estudiante.setNombre("Sebastian");
+                estudiante.setApellido("Valverde");
+                estudiante.setCedula("0401789077");
+                estudiante.setFechaNacimiento(LocalDate.of(2004, 10, 15));
+                estudiante.setGenero("Masculino"); 
+        eService.actualizar(1, estudiante2); */
+            
+           // this.eService.listarPorNombreCriteria("Kaladin").forEach(System.out::println);
             
            /* Estudiante estudiante = new Estudiante();
               estudiante.setNombre("Kaladin");
@@ -66,11 +88,11 @@ public class Main {
                 estudiante4.setGenero(null);
                 this.eService.guardar(estudiante4); */
 
-                this.eService.listarPorNombreApellidoCriteria("Kaladin", "Stormblessed").forEach(System.out::println);
+               /*  this.eService.listarPorNombreApellidoCriteria("Kaladin", "Stormblessed").forEach(System.out::println);
                 this.eService.listarPorNombreApellidoCriteria("Kaladin", null).forEach(System.out::println);
                 this.eService.listarPorNombreApellidoCriteria(null, "Stormblessed").forEach(System.out::println);
                 this.eService.listarPorNombreApellidoCriteria(null, null).forEach(System.out::println);
-
+ */
             return 0;
         }
     }
