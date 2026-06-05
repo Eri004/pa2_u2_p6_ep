@@ -34,14 +34,24 @@ public class Main {
              * profesorService.guardar(p1);
              */
 
-            System.out.println("Imprimiento todos los profesores con correo gmail:");
+           /*  System.out.println("Imprimiento todos los profesores con correo gmail:");
             profesorService.listarPorCorreoSensible("gmail").forEach(System.out::println);
 
             System.out.println("Imprimiento todos los profesores con nombre Erick en orden alfabetico de apellido:");
             profesorService.listarPorNombreOrdenado("Erick").forEach(System.out::println);
 
             System.out.println("Imprimiendo todos los profesores cuyo apellido comienza con P:");
-            profesorService.buscarApellidoComienza("P").forEach(System.out::println);
+            profesorService.buscarApellidoComienza("P").forEach(System.out::println); */
+
+            
+            
+            profesorService.listarTodosCriteria().forEach(System.out::println); 
+
+            profesorService.listarPorNombreCriteria("Erick").forEach(System.out::println);
+
+            profesorService.listarNombreApellidoCriteria("Erick", "Zapata").forEach(System.out::println);
+
+            
 
             return 0;
         }

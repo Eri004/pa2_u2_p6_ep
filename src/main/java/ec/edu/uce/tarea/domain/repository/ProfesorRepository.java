@@ -32,4 +32,10 @@ public interface ProfesorRepository {
 
     public List<Profesor> buscarApellidoComienzaNative(String prefijo);
 
+    public List <Profesor> seleccionarTodosCriteria ();
+
+    public List<Profesor> seleccionarPorNombreCriteria(String nombre);
+
+     public List<Profesor> seleccionarNombreApellidoCriteria (String nombre, String apellido);
+
 }

@@ -73,5 +73,18 @@ public class ProfesorService {
     public List<Profesor> buscarApellidoComienza(String prefijo){
         return this.profesorRepository.buscarApellidoComienzaNative(prefijo);
     }
+      
+    public List<Profesor> listarTodosCriteria(){
+        return this.profesorRepository.seleccionarTodosCriteria();
+    }
+
+    public List<Profesor> listarPorNombreCriteria(String nombre){
+        return this.profesorRepository.seleccionarPorNombreCriteria(nombre);
+    }
+
+    public List<Profesor> listarNombreApellidoCriteria(String nombre, String apellido){
+        return this.profesorRepository.seleccionarNombreApellidoCriteria(nombre, apellido);
+    }
+    
 
 }   
