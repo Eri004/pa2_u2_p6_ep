@@ -1,12 +1,21 @@
 package ec.edu.uce;
 
-import ec.edu.uce.tarea.application.service.ProfesorService;
-import ec.edu.uce.tarea.domain.model.Profesor;
+
+
 import io.quarkus.runtime.Quarkus;
 import io.quarkus.runtime.QuarkusApplication;
 import io.quarkus.runtime.annotations.QuarkusMain;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
+
+import java.time.LocalDate;
+
+import ec.edu.uce.tarea.application.service.OficinaService;
+import ec.edu.uce.tarea.application.service.ProfesorService;
+import ec.edu.uce.tarea.domain.model.Oficina;
+import ec.edu.uce.tarea.domain.model.Profesor;
+
+
 
 @QuarkusMain
 public class Main {
@@ -18,41 +27,37 @@ public class Main {
     public static class App implements QuarkusApplication {
 
         @Inject
+        OficinaService oficinaService;
+        
+        @Inject
         ProfesorService profesorService;
 
         @Override
-        @Transactional
         public int run(String... args) throws Exception {
 
-            /*
-             * Profesor p1 = new Profesor();
-             * p1.setNombre("Erick");
-             * p1.setApellido("Zapata");
-             * p1.setMateria("Frances");
-             * p1.setDireccion("Guangopolo");
-             * p1.setCorreo("erick.zapata@uce.edu.ec");
-             * profesorService.guardar(p1);
-             */
+/* 
+             Oficina oficina1 = new Oficina();
+            oficina1.setNombre("Oficina Ingenieria 1");
+            oficina1.setCodigo(44335);
+        this.oficinaService.crearOficina(oficina1); 
 
-           /*  System.out.println("Imprimiento todos los profesores con correo gmail:");
-            profesorService.listarPorCorreoSensible("gmail").forEach(System.out::println);
-
-            System.out.println("Imprimiento todos los profesores con nombre Erick en orden alfabetico de apellido:");
-            profesorService.listarPorNombreOrdenado("Erick").forEach(System.out::println);
-
-            System.out.println("Imprimiendo todos los profesores cuyo apellido comienza con P:");
-            profesorService.buscarApellidoComienza("P").forEach(System.out::println); */
+        Profesor profesor1 = new Profesor();
+        profesor1.setNombre("Edgar");
+        profesor1.setApellido("Mena");
+        profesor1.setDireccion("Conocoto");
+        profesor1.setCorreo("edgeM3314@gmail.com");
+        profesor1.setMateria("Programacion");
+        profesor1.setOficina(this.oficinaService.seleccionarOficinaId(1)); */
+        
+      //  this.profesorService.guardar(profesor1);
 
             
-            
-            profesorService.listarTodosCriteria().forEach(System.out::println); 
+        System.out.println("Profesor Ingresado:");
+        System.out.println(this.profesorService.buscarPorId(1));
 
-            profesorService.listarPorNombreCriteria("Erick").forEach(System.out::println);
-
-            profesorService.listarNombreApellidoCriteria("Erick", "Zapata").forEach(System.out::println);
-
-            
-
+        System.out.println("Oficina del Profesor:");
+        System.out.println(this.profesorService.buscarPorId(1).getOficina());
+        
             return 0;
         }
     }

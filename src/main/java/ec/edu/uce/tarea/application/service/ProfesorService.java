@@ -4,6 +4,7 @@ package ec.edu.uce.tarea.application.service;
 import java.util.List;
 import ec.edu.uce.tarea.domain.model.Profesor;
 import ec.edu.uce.tarea.domain.repository.ProfesorRepository;
+import ec.edu.uce.tarea.infrastructure.repository.ProfesorImpl;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 
@@ -11,7 +12,7 @@ import jakarta.inject.Inject;
 public class ProfesorService {
 
     @Inject
-    private ProfesorRepository profesorRepository;
+    private ProfesorImpl profesorRepository;
 
     public void guardar (Profesor profesor){
         this.profesorRepository.crear(profesor);

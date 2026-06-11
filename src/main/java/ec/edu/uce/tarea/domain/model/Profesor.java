@@ -1,14 +1,18 @@
 package ec.edu.uce.tarea.domain.model;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.NamedQuery;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.NamedQueries;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
+
 
 @Entity
 @Table (name = "profesor")
@@ -34,6 +38,10 @@ public class Profesor {
     private String direccion;
     @Column(name="prof_correo")
     private String correo;
+
+    @OneToOne 
+    @JoinColumn (name = "prof_oficina")
+    private Oficina oficina;
 
     public Integer getId() {
         return id;
@@ -72,9 +80,21 @@ public class Profesor {
         this.direccion = direccion;
     }
 
+        public Oficina getOficina() {
+            return oficina;
+        }
+        public void setOficina(Oficina oficina) {
+            this.oficina = oficina;
+        }   
+
+    
+
     @Override
             public String toString() {
-                return "Profesor [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", materia=" + materia + ", direccion=" + direccion + ", correo=" + correo + "]";
+                return "Profesor [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", materia=" + materia + ", direccion=" + direccion + ", correo=" + correo + 
+                ", oficina=" + oficina.getId() + "]";
+
     }
     
 }
+
