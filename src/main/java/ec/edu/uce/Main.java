@@ -11,8 +11,10 @@ import jakarta.transaction.Transactional;
 import java.time.LocalDate;
 
 import ec.edu.uce.application.service.CiudadanoService;
+import ec.edu.uce.application.service.EmpleadoService;
 import ec.edu.uce.application.service.EstudianteService;
 import ec.edu.uce.domain.model.Ciudadano;
+import ec.edu.uce.domain.model.Empleado;
 import ec.edu.uce.domain.model.Estudiante;
 
 @QuarkusMain
@@ -27,20 +29,32 @@ public class Main {
         @Inject
         private CiudadanoService ciudadanoService;
 
+        @Inject 
+        private EmpleadoService empleadoService;
+
          
 
         @Override
         public int run(String... args) throws Exception {
 
-           /*  Ciudadano ciudadano = new Ciudadano();
-            ciudadano.setCedula("1234567890");
-            ciudadano.setNombre("Juan");
-            ciudadano.setApellido("Pérez");
-            ciudadano.setFechaNacimiento(LocalDate.of(1990, 1, 1));
-            ciudadanoService.guardar(ciudadano);
- */
-          System.out.println("Ciudadano guardado con éxito: " + ciudadanoService.buscarPorId(2));
+              Ciudadano ciudadano = new Ciudadano();
+            ciudadano.setNombre("Ciudadano");
+            ciudadano.setApellido("TRES");
+            ciudadano.setCedula("0401739295");
+            ciudadano.setFechaNacimiento(LocalDate.of(2000, 11, 29));
+               //  ciudadanoService.guardar(ciudadano); 
+                       
+            Empleado empleado = new Empleado();
         
+            empleado.setNombre("Miguelito");
+            empleado.setApellido("Soria");
+            empleado.setFechaNacimiento(LocalDate.of(1980, 10, 10));
+            empleado.setCargo("Bodeguero");
+            empleado.setSalario(2230.0);
+          empleado.setCiudadano(ciudadano);
+        
+          empleadoService.crearEmpleado(empleado);
+            
             return 0;
         }
     }
