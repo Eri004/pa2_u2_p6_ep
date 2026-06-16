@@ -39,7 +39,7 @@ public class Main {
 
               Ciudadano ciudadano = new Ciudadano();
             ciudadano.setNombre("Ciudadano");
-            ciudadano.setApellido("TRES");
+            ciudadano.setApellido("Cinco");
             ciudadano.setCedula("0401739295");
             ciudadano.setFechaNacimiento(LocalDate.of(2000, 11, 29));
                //  ciudadanoService.guardar(ciudadano); 
@@ -47,10 +47,10 @@ public class Main {
             Empleado empleado = new Empleado();
         
             empleado.setNombre("Miguelito");
-            empleado.setApellido("Soria");
+            empleado.setApellido("Cinco");
             empleado.setFechaNacimiento(LocalDate.of(1980, 10, 10));
-            empleado.setCargo("Bodeguero");
-            empleado.setSalario(2230.0);
+            empleado.setCargo("Software Engineer");
+            empleado.setSalario(null);
           empleado.setCiudadano(ciudadano);
         
           empleadoService.crearEmpleado(empleado);
