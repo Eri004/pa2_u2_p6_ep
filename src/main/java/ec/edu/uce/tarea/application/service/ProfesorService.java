@@ -7,6 +7,7 @@ import ec.edu.uce.tarea.domain.repository.ProfesorRepository;
 import ec.edu.uce.tarea.infrastructure.repository.ProfesorImpl;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
 
 @ApplicationScoped
 public class ProfesorService {
@@ -14,6 +15,7 @@ public class ProfesorService {
     @Inject
     private ProfesorImpl profesorRepository;
 
+    @Transactional
     public void guardar (Profesor profesor){
         this.profesorRepository.crear(profesor);
 

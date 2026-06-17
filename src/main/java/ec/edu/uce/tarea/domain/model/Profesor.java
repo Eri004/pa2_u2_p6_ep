@@ -39,7 +39,7 @@ public class Profesor {
     @Column(name="prof_correo")
     private String correo;
 
-    @OneToOne 
+    @OneToOne (cascade=CascadeType.ALL)
     @JoinColumn (name = "prof_oficina")
     private Oficina oficina;
 

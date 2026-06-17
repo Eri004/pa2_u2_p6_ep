@@ -35,28 +35,25 @@ public class Main {
         @Override
         public int run(String... args) throws Exception {
 
-/* 
-             Oficina oficina1 = new Oficina();
-            oficina1.setNombre("Oficina Ingenieria 1");
-            oficina1.setCodigo(44335);
-        this.oficinaService.crearOficina(oficina1); 
+            // Se agrego Cascade a la relacion entre Profesor y Oficina, 
+            // por lo que al persistir un Profesor, se persistira su Oficina asociada
 
-        Profesor profesor1 = new Profesor();
-        profesor1.setNombre("Edgar");
-        profesor1.setApellido("Mena");
-        profesor1.setDireccion("Conocoto");
-        profesor1.setCorreo("edgeM3314@gmail.com");
-        profesor1.setMateria("Programacion");
-        profesor1.setOficina(this.oficinaService.seleccionarOficinaId(1)); */
-        
-      //  this.profesorService.guardar(profesor1);
-
+            //Crearemos una oficina y la mandare al servicio de profesor 
+            // para que se persista junto con el profesor
             
-        System.out.println("Profesor Ingresado:");
-        System.out.println(this.profesorService.buscarPorId(1));
+            Oficina oficina1 = new Oficina();
+            oficina1.setNombre("Oficina Principal");
+            oficina1.setCodigo(101);
 
-        System.out.println("Oficina del Profesor:");
-        System.out.println(this.profesorService.buscarPorId(1).getOficina());
+            Profesor profesor1 = new Profesor();
+            profesor1.setNombre("Erick");
+            profesor1.setApellido("Paz");
+            profesor1.setMateria("Matematicas");
+            profesor1.setCorreo("espazminov@gmail.com");
+            profesor1.setOficina(oficina1);
+
+            profesorService.guardar(profesor1);
+
         
             return 0;
         }
