@@ -9,13 +9,18 @@ import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import ec.edu.uce.application.service.CiudadanoService;
+import ec.edu.uce.application.service.ClienteService;
 import ec.edu.uce.application.service.EmpleadoService;
 import ec.edu.uce.application.service.EstudianteService;
 import ec.edu.uce.domain.model.Ciudadano;
+import ec.edu.uce.domain.model.Cliente;
 import ec.edu.uce.domain.model.Empleado;
 import ec.edu.uce.domain.model.Estudiante;
+import ec.edu.uce.domain.model.Pedido;
 
 @QuarkusMain
 public class Main {
@@ -27,33 +32,38 @@ public class Main {
     public static class App implements QuarkusApplication {
 
         @Inject
-        private CiudadanoService ciudadanoService;
-
-        @Inject 
-        private EmpleadoService empleadoService;
+        private ClienteService clienteService;
 
          
-
+     
         @Override
         public int run(String... args) throws Exception {
 
-              Ciudadano ciudadano = new Ciudadano();
-            ciudadano.setNombre("Ciudadano");
-            ciudadano.setApellido("Cinco");
-            ciudadano.setCedula("0401739295");
-            ciudadano.setFechaNacimiento(LocalDate.of(2000, 11, 29));
-               //  ciudadanoService.guardar(ciudadano); 
-                       
-            Empleado empleado = new Empleado();
+              Cliente cliente = new Cliente();
+                cliente.setCedula("1234567890");
+                cliente.setNombre("Juan Perez");
+            
+                
+            Pedido p1 = new Pedido();
+                p1.setFecha(LocalDate.now());
+                p1.setCliente(cliente);
+                p1.setTotal(100L);
+            Pedido p2 = new Pedido();
+                p2.setFecha(LocalDate.now());
+                p2.setCliente(cliente);
+                p2.setTotal(200L);
+
+                ArrayList<Pedido> pedidos = new ArrayList<>();
+                pedidos.add(p1);
+                pedidos.add(p2);
+                
+                cliente.setPedidos(pedidos);
+
+                clienteService.guardar(cliente);
+               
+
+
         
-            empleado.setNombre("Miguelito");
-            empleado.setApellido("Cinco");
-            empleado.setFechaNacimiento(LocalDate.of(1980, 10, 10));
-            empleado.setCargo("Software Engineer");
-            empleado.setSalario(null);
-          empleado.setCiudadano(ciudadano);
-        
-          empleadoService.crearEmpleado(empleado);
             
             return 0;
         }
