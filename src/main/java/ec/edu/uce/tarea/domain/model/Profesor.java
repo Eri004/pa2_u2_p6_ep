@@ -1,5 +1,7 @@
 package ec.edu.uce.tarea.domain.model;
 
+import java.util.List;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -7,9 +9,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.NamedQuery;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
@@ -42,6 +45,9 @@ public class Profesor {
     @OneToOne (cascade=CascadeType.ALL)
     @JoinColumn (name = "prof_oficina")
     private Oficina oficina;
+
+    @OneToMany(mappedBy = "profesor",cascade = CascadeType.ALL)
+    private List<Proyecto> proyectos;
 
     public Integer getId() {
         return id;
@@ -87,6 +93,12 @@ public class Profesor {
             this.oficina = oficina;
         }   
 
+        public List<Proyecto> getProyectos() {
+            return proyectos;
+        }
+        public void setProyectos(List<Proyecto> proyectos) {
+            this.proyectos = proyectos;
+        }
     
 
     @Override
