@@ -9,6 +9,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
@@ -48,6 +50,12 @@ public class Profesor {
 
     @OneToMany(mappedBy = "profesor",cascade = CascadeType.ALL)
     private List<Proyecto> proyectos;
+
+    @ManyToMany
+    @JoinTable(name = "profesor_departamento",
+        joinColumns = @JoinColumn(name = "prde_id_profesor"),
+        inverseJoinColumns = @JoinColumn(name = "prde_id_departamento"))
+    private List<Departamento> departamentos;
 
     public Integer getId() {
         return id;
@@ -99,6 +107,14 @@ public class Profesor {
         public void setProyectos(List<Proyecto> proyectos) {
             this.proyectos = proyectos;
         }
+
+        public List<Departamento> getDepartamentos() {
+            return departamentos;
+        }
+        public void setDepartamentos(List<Departamento> departamentos) {
+            this.departamentos = departamentos;
+        }
+        
     
 
     @Override
