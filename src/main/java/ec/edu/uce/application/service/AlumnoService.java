@@ -1,5 +1,6 @@
 package ec.edu.uce.application.service;
 
+import ec.edu.uce.domain.model.Alumno;
 import ec.edu.uce.domain.repository.AlumnoRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
@@ -11,6 +12,8 @@ public class AlumnoService {
 
     @Inject
     AlumnoRepository alumnoRepository;
+
+    @Transactional
     public void guardar (Alumno alumno){
         this.alumnoRepository.persist(alumno);
     }
