@@ -5,6 +5,7 @@ import java.util.List;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -51,11 +52,12 @@ public class Profesor {
     @OneToMany(mappedBy = "profesor",cascade = CascadeType.ALL)
     private List<Proyecto> proyectos;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinTable(name = "profesor_departamento",
         joinColumns = @JoinColumn(name = "prde_id_profesor"),
         inverseJoinColumns = @JoinColumn(name = "prde_id_departamento"))
     private List<Departamento> departamentos;
+
 
     public Integer getId() {
         return id;
@@ -120,7 +122,7 @@ public class Profesor {
     @Override
             public String toString() {
                 return "Profesor [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", materia=" + materia + ", direccion=" + direccion + ", correo=" + correo + 
-                ", oficina=" + oficina.getId() + "]";
+                "]";
 
     }
     

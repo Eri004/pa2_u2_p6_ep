@@ -2,8 +2,10 @@ package ec.edu.uce.tarea.domain.model;
 
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -26,7 +28,7 @@ public class Departamento {
         @Column(name="dep_ubicacion")
         private String ubicacion;
 
-        @ManyToMany (mappedBy = "departamentos")
+        @ManyToMany (mappedBy = "departamentos", cascade= CascadeType.ALL,fetch = FetchType.EAGER)
         private List<Profesor> profesores;
 
         public Integer getId() {
