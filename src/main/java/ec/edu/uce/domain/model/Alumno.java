@@ -59,8 +59,19 @@ public class Alumno {
 
     @Override
     public String toString() {
-        return "Alumno [id=" + id + ", nombre=" + nombre ;
+        return "Alumno [id=" + id + ", nombre=" + nombre + ", materias=" + listarMaterias() + "]";
     }
+
+    private String listarMaterias() {
+        StringBuilder sb = new StringBuilder();
+        for (Materia materia : materias) {
+            sb.append(materia.getNombre()).append(", ");
+        }
+        if (sb.length() > 0) {
+            sb.setLength(sb.length() - 2); // Eliminar la última coma y espacio
+        }
+        return sb.toString();
+    } 
 
     
 }

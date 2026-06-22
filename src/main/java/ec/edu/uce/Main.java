@@ -46,44 +46,49 @@ public class Main {
         @Override
         public int run(String... args) throws Exception {
 
-              
-              /*  Alumno alumno = new Alumno();
-                alumno.setNombre("Serena");
+              /* // Crear un nuevo alumno y asociarle dos materias
+               Alumno alumno = new Alumno();
+                alumno.setNombre("Alison");
 
                 Materia materia = new Materia();
-                materia.setNombre("Matematica");
+                materia.setNombre("Biologia");
 
                 Materia materia2 = new Materia();
-                materia2.setNombre("Lengua");
+                materia2.setNombre("Ciencias Naturales");
 
                 List<Materia> materias = new ArrayList<>();
                 materias.add(materia);
                 materias.add(materia2);
-
-                alumno.setMaterias(materias);
-                alumnoService.guardar(alumno); */
-
-                /* Materia materia2 = new Materia();
-                materia2.setNombre("Progra 1");
+                alumnoService.guardar(alumno); 
+ 
+                // Crear una nueva materia y asociarla a dos alumnos
+                Materia materia3 = new Materia();
+                materia3.setNombre("Fisica Cuantica");
+                
 
                 Alumno alumno2 = new Alumno();
-                alumno2.setNombre("Abidi");
-                alumno2.setMaterias(List.of(materia2));
+                alumno2.setNombre("Brandon");
+                alumno2.setMaterias(List.of(materia3));
             
                 Alumno alumno3 = new Alumno();
-                alumno3.setNombre("Fenix");
-                alumno3.setMaterias(List.of(materia2));
+                alumno3.setNombre("Betty");
+                alumno3.setMaterias(List.of(materia3));
 
                 List<Alumno> alumnos = new ArrayList<>();
                 alumnos.add(alumno2);
                 alumnos.add(alumno3);
 
-                materia2.setAlumnos(alumnos);
+                materia3.setAlumnos(alumnos);
 
-                materiaService.guardar(materia2); */
+                materiaService.guardar(materia3); 
+                alumno.setMaterias(materias); */
+                
 
-             //   System.out.println(materiaService.buscarPorId(1));
-             materiaService.buscarPorId(1).getAlumnos().forEach(System.out::println);
+              alumnoService.buscarTodos().forEach(System.out::println);
+            
+              materiaService.buscarTodos().forEach(System.out::println);
+
+              materiaService.buscarPorId(5).getAlumnos().forEach(System.out::println);
                 
              alumnoService.buscarPorId(3).getMaterias().forEach(System.out::println);
 

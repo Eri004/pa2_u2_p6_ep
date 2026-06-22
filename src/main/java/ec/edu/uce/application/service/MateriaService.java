@@ -25,7 +25,9 @@ public class MateriaService {
         return this.materiaRepository.findById(Long.valueOf(id));
     }
 
-
+    public List<Materia> buscarTodos(){
+        return this.materiaRepository.listAll();
+    }
 
     
 }
