@@ -14,7 +14,11 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "cuenta")
 public class Cuenta {
@@ -31,39 +35,17 @@ public class Cuenta {
     @Column(name = "cue_saldo")
     private BigDecimal saldo;
 
-    @OneToMany(mappedBy = "cuentaOrigen", cascade = CascadeType.ALL)
+    /* @OneToMany(mappedBy = "cuentaOrigen", cascade = CascadeType.ALL)
     private List<Transferencia> transferenciasOrigen;
 
     @OneToMany(mappedBy = "cuentaDestino", cascade = CascadeType.ALL)
     private List<Transferencia> transferenciasDestino;
+ */
+
+   
 
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getNumeroCuenta() {
-        return numeroCuenta;
-    }
-
-    public void setNumeroCuenta(String numeroCuenta) {
-        this.numeroCuenta = numeroCuenta;
-    }
-
-    public BigDecimal getSaldo() {
-        return saldo;
-    }
-
-    public void setSaldo(BigDecimal saldo) {
-        this.saldo = saldo;
-    }
-
-
-    public List<Transferencia> getTransferenciasOrigen() {
+    /* public List<Transferencia> getTransferenciasOrigen() {
         return transferenciasOrigen;
     }
 
@@ -77,7 +59,7 @@ public class Cuenta {
 
     public void setTransferenciasDestino(List<Transferencia> transferenciasDestino) {
         this.transferenciasDestino = transferenciasDestino;
-    }
+    } */
 
     @Override
     public String toString() {

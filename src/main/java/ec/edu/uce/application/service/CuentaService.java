@@ -1,5 +1,7 @@
 package ec.edu.uce.application.service;
 
+import java.util.List;
+
 import ec.edu.uce.domain.model.Cuenta;
 import ec.edu.uce.domain.repository.CuentaRepository;
 import jakarta.enterprise.context.ApplicationScoped;
@@ -49,6 +51,10 @@ public class CuentaService {
         if (cuentaExistente != null) {
             cuentaRepository.delete(cuentaExistente);
         }
+    }
+
+    public List<Cuenta> obtenerTodasLasCuentas() {
+        return cuentaRepository.listAll();
     }
     
 }

@@ -27,7 +27,7 @@ public class Pedido {
     private Long total;
 
     @ManyToOne
-    private Cliente cliente;
+    private Cliente cliente; 
 
 
     public Integer getId() {
@@ -48,12 +48,12 @@ public class Pedido {
     public void setTotal(Long total) {
         this.total = total;
     }
-    public Cliente getCliente() {
+    /* public Cliente getCliente() {
         return cliente;
     }
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
-    }
+    } */
 
 
     

@@ -50,8 +50,8 @@ public class Main {
         @Override
         public int run(String... args) throws Exception {
 
-            
-            /* Cuenta cuenta1 = new Cuenta();
+            /* 
+            Cuenta cuenta1 = new Cuenta();
             cuenta1.setNumeroCuenta("220401739206");
             cuenta1.setSaldo(new BigDecimal("1000.00"));
 
@@ -60,11 +60,14 @@ public class Main {
             cuenta2.setSaldo(new BigDecimal("500.00"));
 
             cuentaService.crearCuenta(cuenta1);
-            cuentaService.crearCuenta(cuenta2); */
+            cuentaService.crearCuenta(cuenta2); 
 
-            
+             */
+            transferenciaService.transferir("220401739206", 
+            "220401739207", new BigDecimal("200.00"));
 
-            transferenciaService.transferir("220401739206", "220401739207", new BigDecimal("200.00"));
+            transferenciaService.obtenerTodasLasTransferencias().forEach(System.out::println);
+            cuentaService.obtenerTodasLasCuentas().forEach(System.out::println);
 
             return 0;
           
